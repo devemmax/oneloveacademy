@@ -115,13 +115,13 @@ const ContactSection = () => {
                   <label className="block text-sm font-poppins font-medium text-primary mb-2">
                     First Name
                   </label>
-                  <Input placeholder="Enter your first name" className="focus-visible:ring-1" />
+                  <Input placeholder="Enter your first name" />
                 </div>
                 <div>
                   <label className="block text-sm font-poppins font-medium text-primary mb-2">
                     Last Name
                   </label>
-                  <Input placeholder="Enter your last name" className="focus-visible:ring-1" />
+                  <Input placeholder="Enter your last name" />
                 </div>
               </div>
               
@@ -129,30 +129,30 @@ const ContactSection = () => {
                 <label className="block text-sm font-poppins font-medium text-primary mb-2">
                   Email Address
                 </label>
-                <Input type="email" placeholder="Enter your email" className="focus-visible:ring-1" />
+                <Input type="email" placeholder="Enter your email" />
               </div>
               
               <div>
                 <label className="block text-sm font-poppins font-medium text-primary mb-2">
                   Phone Number
                 </label>
-                <Input type="tel" placeholder="Enter your phone number" className="focus-visible:ring-1" />
+                <Input type="tel" placeholder="Enter your phone number" />
               </div>
               
               <div>
                 <label className="block text-sm font-poppins font-medium text-primary mb-2">
                   Subject
                 </label>
-                <Input placeholder="What is this regarding?" className="focus-visible:ring-1" />
+                <Input placeholder="What is this regarding?" />
               </div>
               
               <div>
                 <label className="block text-sm font-poppins font-medium text-primary mb-2">
                   Message
                 </label>
-                <Textarea
+                <Textarea 
                   placeholder="Tell us more about your inquiry..."
-                  className="min-h-[120px] focus-visible:ring-1"
+                  className="min-h-[120px]"
                 />
               </div>
               
@@ -164,10 +164,8 @@ const ContactSection = () => {
         </div>
 
         {/* Map Section */}
-        <div className="mt-16 flex justify-center">
-          <div className="w-full max-w-4xl">
-            <MapSection />
-          </div>
+        <div className="mt-16">
+          <MapSection />
         </div>
       </div>
     </section>

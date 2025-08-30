@@ -48,7 +48,7 @@ const WelcomeSection = () => {
 
   return (
     <section className="py-20 bg-gradient-light">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div className="max-w-8xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="text-center mb-16">
           <h2 className="font-poppins font-bold text-3xl md:text-4xl lg:text-5xl text-primary mb-4">
             Welcome to One Love Academy
@@ -62,8 +62,7 @@ const WelcomeSection = () => {
           </div>
         </div>
 
-        <div className="flex justify-center">
-          <div className="relative h-[280px] lg:h-[400px] w-full max-w-4xl rounded-3xl overflow-hidden shadow-elegant">
+        <div className="relative h-[360px] lg:h-[520px] rounded-3xl overflow-hidden shadow-elegant">
           {images.map((image, index) => (
             <div
               key={index}
@@ -85,8 +84,7 @@ const WelcomeSection = () => {
               </div>
             </div>
           ))}
-
-          </div>
+          
         </div>
       </div>
     </section>
