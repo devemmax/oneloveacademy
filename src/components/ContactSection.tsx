@@ -1,10 +1,70 @@
+import { useState } from "react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
-import { MapPin, Phone, Mail, Clock, Facebook, Instagram } from "lucide-react";
+import { MapPin, Phone, Mail, Clock, Facebook, Instagram, Send, CheckCircle, AlertCircle } from "lucide-react";
 import MapSection from "./MapSection";
+import emailjs from '@emailjs/browser';
 
 const ContactSection = () => {
+  const [formData, setFormData] = useState({
+    firstName: '',
+    lastName: '',
+    email: '',
+    phone: '',
+    subject: '',
+    message: ''
+  });
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  const [submitStatus, setSubmitStatus] = useState<'idle' | 'success' | 'error'>('idle');
+
+  const handleInputChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
+    const { name, value } = e.target;
+    setFormData(prev => ({
+      ...prev,
+      [name]: value
+    }));
+  };
+
+  const handleSubmit = async (e: React.FormEvent) => {
+    e.preventDefault();
+    setIsSubmitting(true);
+    setSubmitStatus('idle');
+
+    try {
+      // EmailJS configuration
+      const serviceId = 'service_hek2qgs';
+      const templateId = 'template_qj7gbfk';
+      const publicKey = 'IGAVMG65L8o7mj0Zh';
+
+      const templateParams = {
+        first_name: formData.firstName,
+        last_name: formData.lastName,
+        from_email: formData.email,
+        phone: formData.phone,
+        subject: formData.subject,
+        message: formData.message,
+        to_email: 'oneloveacademy360@gmail.com'
+      };
+
+      await emailjs.send(serviceId, templateId, templateParams, publicKey);
+
+      setSubmitStatus('success');
+      setFormData({
+        firstName: '',
+        lastName: '',
+        email: '',
+        phone: '',
+        subject: '',
+        message: ''
+      });
+    } catch (error) {
+      console.error('Error sending email:', error);
+      setSubmitStatus('error');
+    } finally {
+      setIsSubmitting(false);
+    }
+  };
   return (
     <section id="contact" className="py-20 bg-white">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -105,23 +165,37 @@ const ContactSection = () => {
           </div>
 
           {/* Contact Form */}
-          <div className="bg-gradient-light p-8 rounded-3xl shadow-elegant">
-            <h3 className="font-poppins font-bold text-xl text-primary mb-6">
+          <div className="bg-gradient-light p-6 md:p-7 lg:p-8 rounded-2xl 6 md:p-7 lg:p-8 rounded-2xl md:rounded-3xl shadow-elegant max-w-xl md:max-w-2xl mx-auto max-w-xl md:max-w-2xl mx-auto">
+            <h3 className="font-poppins font-bold text-lg md:text-lg md:text-xl text-primary mb-4 md:mb-4 md:mb-6">
               Send us a Message
             </h3>
-            <form className="space-y-6">
+            <form onSubmit={handleSubmit} className="space-y-6">
               <div className="grid sm:grid-cols-2 gap-4">
                 <div>
                   <label className="block text-sm font-poppins font-medium text-primary mb-2">
                     First Name
                   </label>
-                  <Input placeholder="Enter your first name" />
+                  <Input
+                    name="firstName"
+                    value={formData.firstName}
+                    onChange={handleInputChange}
+                    placeholder="Enter your first name"
+                    className="focus-visible:ring-1"
+                    required
+                  />
                 </div>
                 <div>
                   <label className="block text-sm font-poppins font-medium text-primary mb-2">
                     Last Name
                   </label>
-                  <Input placeholder="Enter your last name" />
+                  <Input
+                    name="lastName"
+                    value={formData.lastName}
+                    onChange={handleInputChange}
+                    placeholder="Enter your last name"
+                    className="focus-visible:ring-1"
+                    required
+                  />
                 </div>
               </div>
               
@@ -129,35 +203,93 @@ const ContactSection = () => {
                 <label className="block text-sm font-poppins font-medium text-primary mb-2">
                   Email Address
                 </label>
-                <Input type="email" placeholder="Enter your email" />
+                <Input
+                  name="email"
+                  type="email"
+                  value={formData.email}
+                  onChange={handleInputChange}
+                  placeholder="Enter your email"
+                  className="focus-visible:ring-1"
+                  required
+                />
               </div>
               
               <div>
                 <label className="block text-sm font-poppins font-medium text-primary mb-2">
                   Phone Number
                 </label>
-                <Input type="tel" placeholder="Enter your phone number" />
+                <Input
+                  name="phone"
+                  type="tel"
+                  value={formData.phone}
+                  onChange={handleInputChange}
+                  placeholder="Enter your phone number"
+                  className="focus-visible:ring-1"
+                  required
+                />
               </div>
               
               <div>
                 <label className="block text-sm font-poppins font-medium text-primary mb-2">
                   Subject
                 </label>
-                <Input placeholder="What is this regarding?" />
+                <Input
+                  name="subject"
+                  value={formData.subject}
+                  onChange={handleInputChange}
+                  placeholder="What is this regarding?"
+                  className="focus-visible:ring-1"
+                  required
+                />
               </div>
               
               <div>
                 <label className="block text-sm font-poppins font-medium text-primary mb-2">
                   Message
                 </label>
-                <Textarea 
+                <Textarea
+                  name="message"
+                  value={formData.message}
+                  onChange={handleInputChange}
                   placeholder="Tell us more about your inquiry..."
-                  className="min-h-[120px]"
+                  className="min-h-[120px] focus-visible:ring-1"
+                  required
                 />
               </div>
               
-              <Button variant="academy" size="sm" className="w-full text-xs">
-                Send Message
+              {/* Status Messages */}
+              {submitStatus === 'success' && (
+                <div className="flex items-center space-x-2 text-green-600 bg-green-50 p-3 rounded-lg">
+                  <CheckCircle className="h-5 w-5" />
+                  <span className="text-sm">Message sent successfully! We'll get back to you soon.</span>
+                </div>
+              )}
+
+              {submitStatus === 'error' && (
+                <div className="flex items-center space-x-2 text-red-600 bg-red-50 p-3 rounded-lg">
+                  <AlertCircle className="h-5 w-5" />
+                  <span className="text-sm">Failed to send message. Please try again or contact us directly.</span>
+                </div>
+              )}
+
+              <Button
+                type="submit"
+                variant="academy"
+                size="sm"
+                className="w-full text-xs hover:outline-none focus:outline-none focus:ring-0"
+                disabled={isSubmitting}
+              >
+                {isSubmitting ? (
+                  <>
+                    <div className="animate-spin rounded-full h-4 w-4 border-b-2 border-white mr-2"></div>
+                    Sending...
+                  </>
+                ) : (
+                  <>
+                    <Send className="h-4 w-4 mr-2" />
+                    Send Message
+                  </>
+                )}
               </Button>
             </form>
           </div>

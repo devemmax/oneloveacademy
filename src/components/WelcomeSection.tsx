@@ -62,7 +62,7 @@ const WelcomeSection = () => {
           </div>
         </div>
 
-        <div className="relative h-[360px] lg:h-[520px] rounded-3xl overflow-hidden shadow-elegant">
+        <div className="relative h-[280px] md:h-[280px] md:h-[440px] md:h-[440px] lg:h-[440px] rounded-3xl overflow-hidden shadow-elegant">
           {images.map((image, index) => (
             <div
               key={index}
@@ -73,11 +73,11 @@ const WelcomeSection = () => {
               <img
                 src={image.src}
                 alt={image.alt}
-                className="w-full h-full object-contain animate-[float_12s_ease-in-out_infinite]"
+                className="w-full h-full object-contain scale-90 md:scale-95 lg:scale-100 scale-90 md:scale-95 lg:scale-100 scale-90 md:scale-95 lg:scale-100 animate-[float_12s_ease-in-out_infinite]"
               />
-              <div className="absolute inset-0 bg-gradient-to-t from-primary/80 to-transparent flex items-end">
-                <div className="p-8 text-white">
-                  <h3 className="font-poppins font-bold text-xl lg:text-2xl">
+              <div className="absolute inset-x-0 bottom-0 top-x-1/3 bottom-0 top-1/3 bg-gradient-to-t from-primary/60 to-transparent flex items-end">
+                <div className="p-6 md:p-7 lg:p-6 md:p-7 lg:p-6 md:p-7 lg:p-8 text-white">
+                  <h3 className="font-poppins font-bold text-lg md:text-lg md:text-lg md:text-xl lg:text-2xl">
                     {image.title}
                   </h3>
                 </div>

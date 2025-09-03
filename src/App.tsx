@@ -22,6 +22,10 @@ const App = () => (
           <Route path="/about" element={<About />} />
           <Route path="/mission-vision" element={<MissionVision />} />
           <Route path="/gallery" element={<Gallery />} />
+          {/* Contact hash route to scroll into view */}
+          <Route path="/contact" element={<Index />} />
+          {/* Contact hash route to scroll into view */}
+          <Route path="/contact" element={<Index />} />
           {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
           <Route path="*" element={<NotFound />} />
         </Routes>

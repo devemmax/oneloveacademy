@@ -2,13 +2,16 @@ import { MapPin, ExternalLink, Navigation } from "lucide-react";
 
 const MapSection = () => {
   // Google Maps embed for One Love Academy - No. 15 Alhaji Ibrahim R. Crescent, Igumah by Miyar Hotel, Mowe, Ogun state
-  const mapEmbedUrl = "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3963.952912181451!2d3.372061315744695!3d6.552186395323028!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x103b8b2ae68280c1%3A0xdc9e87a367c3d9cb!2sNo.%2015%20Alhaji%20Ibrahim%20R.%20Crescent%2C%20Igumah%20by%20Miyar%20Hotel%2C%20Mowe%2C%20Ogun%20State%2C%20Nigeria!5e0!3m2!1sen!2sus!4v1640995200000!5m2!1sen!2sus";
+  const mapEmbedUrl =
+    "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3963.952912181451!2d3.372061315744695!3d6.552186395323028!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x103b8b2ae68280c1%3A0xdc9e87a367c3d9cb!2sNo.%2015%20Alhaji%20Ibrahim%20R.%20Crescent%2C%20Igumah%20by%20Miyar%20Hotel%2C%20Mowe%2C%20Ogun%20State%2C%20Nigeria!5e0!3m2!1sen!2sus!4v1640995200000!5m2!1sen!2sus";
 
   // Direct Google Maps link for opening in new tab
-  const googleMapsLink = "https://www.google.com/maps/search/No.+15+Alhaji+Ibrahim+R.+Crescent,+Igumah+by+Miyar+Hotel,+Mowe,+Ogun+state,+Nigeria";
+  const googleMapsLink =
+    "https://www.google.com/maps/search/No.+15+Alhaji+Ibrahim+R.+Crescent,+Igumah+by+Miyar+Hotel,+Mowe,+Ogun+state,+Nigeria";
 
   // Directions link
-  const directionsLink = "https://www.google.com/maps/dir//No.+15+Alhaji+Ibrahim+R.+Crescent,+Igumah+by+Miyar+Hotel,+Mowe,+Ogun+state,+Nigeria";
+  const directionsLink =
+    "https://www.google.com/maps/dir//No.+15+Alhaji+Ibrahim+R.+Crescent,+Igumah+by+Miyar+Hotel,+Mowe,+Ogun+state,+Nigeria";
 
   return (
     <div className="bg-white rounded-2xl shadow-card overflow-hidden">
@@ -46,25 +49,25 @@ const MapSection = () => {
         </div>
       </div>
 
-      <div className="h-48 md:h-56 w-full relative">
-        <iframe
-          src={mapEmbedUrl}
-          width="100%"
-          height="100%"
-          style={{ border: 0 }}
-          allowFullScreen
-          loading="lazy"
-          referrerPolicy="no-referrer-when-downgrade"
-          title="One Love Academy Location - No. 15 Alhaji Ibrahim R. Crescent, Igumah by Miyar Hotel, Mowe, Ogun state"
-          className="w-full h-full"
-        ></iframe>
+      <div className="w-full flex justify-center">
+        <div className="relative w-full max-w-xl md:max-w-2xl lg:max-w-3xl h-48 sm:h-56 md:h-64 lg:h-72">
+          <iframe
+            src={mapEmbedUrl}
+            width="100%"
+            height="100%"
+            style={{ border: 0 }}
+            allowFullScreen
+            loading="lazy"
+            referrerPolicy="no-referrer-when-downgrade"
+            title="One Love Academy Location - No. 15 Alhaji Ibrahim R. Crescent, Igumah by Miyar Hotel, Mowe, Ogun state"
+            className="w-full h-full rounded-b-2xl"
+          ></iframe>
+        </div>
       </div>
 
       <div className="p-4 bg-muted">
         <div className="text-center space-y-2">
-          <p className="text-sm font-medium text-foreground">
-            📍 No. 15 Alhaji Ibrahim R. Crescent
-          </p>
+          <p className="text-sm font-medium text-foreground">📍 No. 15 Alhaji Ibrahim R. Crescent</p>
           <p className="text-xs text-muted-foreground">
             Igumah by Miyar Hotel, Mowe, Ogun State, Nigeria
           </p>
